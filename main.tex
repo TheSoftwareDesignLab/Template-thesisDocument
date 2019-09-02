@@ -1,0 +1,221 @@
+% **************************************************
+% Document Class Definition
+% **************************************************
+\documentclass[%
+	paper=A4,					% paper size --> A4 is default in Germany
+	twoside=true,				% onesite or twoside printing
+	openright,					% doublepage cleaning ends up right side
+	parskip=full,				% spacing value / method for paragraphs
+	chapterprefix=true,			% prefix for chapter marks
+	11pt,						% font size
+	headings=normal,			% size of headings
+	bibliography=totoc,			% include bib in toc
+	listof=totoc,				% include listof entries in toc
+	titlepage=on,				% own page for each title page
+	captions=tableabove,		% display table captions above the float env
+	draft=false,				% value for draft version
+]{scrreprt}%
+
+% **************************************************
+% Debug LaTeX Information
+% **************************************************
+%\listfiles
+
+% **************************************************
+% Information and Commands for Reuse
+% **************************************************
+\newcommand{\ie}{\textit{i.e.,}\xspace}
+\newcommand{\eg}{\textit{e.g.,}\xspace}
+\newcommand{\etc}{\textit{etc.}\xspace}
+\newcommand{\thesisTitle}{T\'{i}tulo de la tesis en ingl\'{e}s}
+\newcommand{\thesisName}{Nombre de los autores de la tesis}
+\newcommand{\thesisSubject}{Proyecto de grado}
+\newcommand{\thesisDate}{Diciembre, 2019}
+\newcommand{\thesisVersion}{1.0}
+
+\newcommand{\thesisFirstReviewer}{Ph.D. Nicol\'{a}s Cardozo }
+\newcommand{\thesisFirstReviewerUniversity}{\protect{Universidad de los Andes, Bogot\'{a}, Colombia}}
+\newcommand{\thesisFirstReviewerDepartment}{Departamento de Ingenier\'{i}a de Sistemas y Computaci\'{o}n}
+
+\newcommand{\thesisSecondReviewer}{Ph.D. Gabriele Bavota}
+\newcommand{\thesisSecondReviewerUniversity}{\protect{Universit\`{a} della Svizzera italiana (USI), Lugano}}
+\newcommand{\thesisSecondReviewerDepartment}{Faculty of Informatics }
+
+\newcommand{\thesisFirstSupervisor}{Ph.D. Mario Linares V\'{a}squez}
+
+\newcommand{\thesisUniversity}{\protect{Universidad de los Andes}}
+\newcommand{\thesisUniversityDepartment}{Departamento de Ingenier\'{i}a de Sistemas y Computaci\'{o}n}
+\newcommand{\thesisUniversityInstitute}{Facultad de Ingenier\'{i}a}
+\newcommand{\thesisUniversityGroup}{The Software Design Lab}
+\newcommand{\thesisUniversityCity}{Bogot\'{a}, Colombia}
+\newcommand{\thesisUniversityStreetAddress}{Cra 1 \# 18A - 12}
+\newcommand{\thesisUniversityPostalCode}{111711}
+
+
+
+% **************************************************
+% Load and Configure Packages
+% **************************************************
+\usepackage[T1]{fontenc}
+\usepackage[utf8]{inputenc}		% defines file's character encoding
+\usepackage[spanish]{babel} % babel system, adjust the language of the content
+\usepackage[					% clean thesis style
+	figuresep=colon,%
+	sansserif=false,%
+	hangfigurecaption=false,%
+	hangsection=true,%
+	hangsubsection=true,%
+	colorize=full,%
+	colortheme=bluemagenta,%
+	bibsys=bibtex,%
+	bibfile=bib-refs,%
+	bibstyle=numeric,%
+]{cleanthesis}
+\usepackage[linesnumbered]{algorithm2e}
+\usepackage{adjustbox}
+\usepackage{listings,color}
+\usepackage{amsfonts}
+\usepackage{tcolorbox}
+\usepackage{amssymb}
+\usepackage{ifthen}
+\lstset{
+	language=xml,
+	tabsize=2,
+	%frame=lines,
+	frame=shadowbox,
+	rulesepcolor=\color{gray},
+	xleftmargin=18pt,
+	framexleftmargin=15pt,
+	keywordstyle=\color{blue},
+	commentstyle=\color{OliveGreen},
+	stringstyle=\color[rgb]{0,0.43,0.72},
+	numbers=left,
+	numberstyle=\tiny,
+	numbersep=4pt,
+	breaklines=true,
+	showstringspaces=false,
+	basicstyle=\ttfamily\scriptsize,
+	columns=fullflexible,
+	emph={node,name,price},emphstyle={\color{magenta}}}
+
+\colorlet{punct}{red!60!black}
+\definecolor{background}{HTML}{EEEEEE}
+\definecolor{delim}{RGB}{20,105,176}
+\colorlet{numb}{magenta!60!black}
+\lstdefinelanguage{json}{
+	basicstyle=\ttfamily\scriptsize,
+	numbers=left,
+	numberstyle=\scriptsize,
+	stepnumber=1,
+	numbersep=8pt,
+	showstringspaces=false,
+	breaklines=true,
+	frame=shadowbox,
+	literate=
+	*{0}{{{\color{numb}0}}}{1}
+	{1}{{{\color{numb}1}}}{1}
+	{2}{{{\color{numb}2}}}{1}
+	{3}{{{\color{numb}3}}}{1}
+	{4}{{{\color{numb}4}}}{1}
+	{5}{{{\color{numb}5}}}{1}
+	{6}{{{\color{numb}6}}}{1}
+	{7}{{{\color{numb}7}}}{1}
+	{8}{{{\color{numb}8}}}{1}
+	{9}{{{\color{numb}9}}}{1}
+	{:}{{{\color{punct}{:}}}}{1}
+	{,}{{{\color{punct}{,}}}}{1}
+	{\{}{{{\color{delim}{\{}}}}{1}
+	{\}}{{{\color{delim}{\}}}}}{1}
+	{[}{{{\color{delim}{[}}}}{1}
+	{]}{{{\color{delim}{]}}}}{1},
+}
+
+\lstloadlanguages{xml}
+\renewcommand{\lstlistingname}{Code example}% Listing -> Algorithm
+\renewcommand{\lstlistlistingname}{List of \lstlistingname s}
+
+
+\hypersetup{					% setup the hyperref-package options
+	pdftitle={\thesisTitle},	% 	- title (PDF meta)
+	pdfsubject={\thesisSubject},% 	- subject (PDF meta)
+	pdfauthor={\thesisName},	% 	- author (PDF meta)
+	plainpages=false,			% 	-
+	colorlinks=false,			% 	- colorize links?
+	pdfborder={0 0 0},			% 	-
+	breaklinks=true,			% 	- allow line break inside links
+	bookmarksnumbered=true,		%
+	bookmarksopen=true			%
+}
+
+\newcommand{\nb}[2]{
+	\fbox{\bfseries\sffamily\scriptsize#1}
+	{\small$\blacktriangleright$\textit{#2}$\blacktriangleleft$}}
+\newcommand\MARIO[1]{\textcolor{red}{\nb{MARIO}{#1}}}
+\newcommand\SANTIAGO[1]{\textcolor{orange}{\nb{SANTIAGO}{#1}}}
+% **************************************************
+% Document CONTENT
+% **************************************************
+\begin{document}
+
+% --------------------------
+% rename document parts
+% --------------------------
+%\renewcaptionname{ngerman}{\figurename}{Abb.}
+%\renewcaptionname{ngerman}{\tablename}{Tab.}
+\renewcaptionname{spanish}{\figurename}{Fig.}
+\renewcaptionname{spanish}{\tablename}{Tab.}
+
+% --------------------------
+% Front matter
+% --------------------------
+\pagenumbering{roman}			% roman page numbing (invisible for empty page style)
+\pagestyle{empty}				% no header or footers
+\input{content/titlepages}		% INCLUDE: all titlepages
+\cleardoublepage
+
+\pagestyle{plain}				% display just page numbers
+\input{content/abstract}		% INCLUDE: the abstracts (english and german)
+\cleardoublepage
+%
+%\input{content/acknowledgement} % INCLUDE: acknowledgement
+%\cleardoublepage
+%
+\setcounter{tocdepth}{2}		% define depth of toc
+\tableofcontents				% display table of contents
+\cleardoublepage
+
+% --------------------------
+% Body matter
+% --------------------------
+\pagenumbering{arabic}			% arabic page numbering
+\setcounter{page}{1}			% set page counter
+\pagestyle{maincontentstyle} 	% fancy header and footer
+
+\input{content/chapter-introduction} % INCLUDE: introduction
+\input{content/chapter-related-work} % INCLUDE: related work
+\input{content/chapter-system}	% INCLUDE: system
+\input{content/chapter-conclusion} % INCLUDE: conclusion
+\cleardoublepage
+
+\printbibliography
+
+
+\cleardoublepage
+
+\listoffigures
+\clearpage
+
+%\listoftables
+%\clearpage
+
+\input{content/colophon}
+%\cleardoublepage
+%\input{content/declaration}
+\clearpage
+\newpage
+\mbox{}
+
+% **************************************************
+% End of Document CONTENT
+% **************************************************
+\end{document}

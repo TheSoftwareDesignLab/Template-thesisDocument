@@ -1,0 +1,19 @@
+% !TEX root = ../thesis-example.tex
+%
+\chapter{Trabajo relacionado y herramientas existentes}
+\label{chapter2}
+
+\section{Generación automática de pruebas}
+Para la generación de pruebas existen diversas herramientas que abarcan el problema de distintas maneras. A continuación se presenta un análisis de las herramientas que se acercan más a nuestra propuesta, sin embargo difieren en que solo se basan en el modelo de GUI.
+
+\subsection{Barista}
+Barista \cite{Fazzini2017} es una herramienta \textit{record and replay} en la cual el tester realiza una prueba de manera manual sobre la GUI de la aplicación. Después, un caso de prueba es codificado para poder ser reproducido en otros dispositivos múltiples veces. A pesar de que este enfoque provee una manera fácil de generar un caso de prueba, el tester se ve obligado a realizar manualmente cada prueba al menos una vez interactuando con la GUI.
+
+\subsection{MobiGUITAR}
+A diferencia de Barista, MobiGUITAR \cite{MobiGUITAR} realiza la interacción y extracción de eventos de la aplicación de manera automática usando GUI Ripping. Mediante esta técnica, se genera una modelo de máquina de estado que representa todos los eventos de la aplicación. A pesar de automatizar el paso de creación de la prueba, esta herramienta no tiene en cuenta los cambios contextuales del dispositivo.
+
+\subsection{Firebase Test Lab}
+Este servicio \cite{firebase} en la nube ofrecido por Google, permite al usuario subir el apk de la aplicación y correr varios tipos de pruebas en la aplicación. Sin embargo, similar a las herramientas anteriores, se basa en exploración de GUI. Además, posee un costo adicional si se desea probar en un mayor número de dispositivos.
+
+\subsection{Sapienz}
+Sapienz\cite{sapienz} utiliza un enfoque multi-objetivo para la exploración y generación de casos de prueba. Esto hace que se obtengan tests mas cortos que maximizan	 su cobertura. Una ventaja de esta herramienta es que se pueden generar pruebas solo con el apk de la aplicación. Sin embargo no se tienen en cuenta los cambios contextuales de la aplicación.

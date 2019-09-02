@@ -1,0 +1,39 @@
+% !TEX root = ../thesis-example.tex
+%
+\chapter{Conclusiones}
+\label{chapter5}
+
+Durante el desarrollo del proyecto se lograron la mayoría de los objetivos propuestos, y se construyó un generador automático de pruebas funcional. A continuación se presentan las conclusiones del proceso y el trabajo futuro.
+
+\section{Objetivos cumplidos}
+
+Gracias a la implementación de esta herramienta se obtuvo un producto inicial que genera pruebas basado en los modelos producidos por RIP. Durante el proceso se adquirieron conocimientos sobre exploración de aplicaciones móviles y generación de código java. Además, se logró el objetivo principal, integrar multi-modelos en la generación de pruebas. Se tuvieron en cuenta los 3 modelos, contexto, dominio y GUI, lo cual es el factor que diferencia la solución de otras ya existentes.
+
+
+\section{Limitaciones del desarrollo}
+\begin{itemize}
+	\item Como se mencionó anteriormente, la generación de pruebas está enfocada exclusivamente en aplicaciones Android. Esto porque es el sistema operativo donde se presentan mayores problemas de desfragmentación y ofrece la facilidad de explorar las aplicaciones mediante herramientas como ADB.
+	
+	\item Debido al alcance del proyecto, el desarrollador debe tener el código fuente de la aplicación para poder ejecutar la prueba
+	
+	\item La extracción del modelo de dominio está basada en los componentes básicos de Android, por lo tanto, los que sean personalizados o de otras librerías no serán reconocidos en dicho modelo.
+	
+	\item El desarrollador debe tener derechos de superusuario sobre el dispositivo o correr las pruebas en un emulador para realizar algunas acciones.
+	
+	
+\end{itemize}
+
+
+\section{Trabajo futuro}
+
+El proyecto presenta varias oportunidades de mejora como lo son:
+
+\begin{itemize}
+	\item Ejecución de la prueba sin tener acceso al código fuente.
+	\item Extender los componentes que son detectados en los diferentes modelos.
+	\item Tener una interfaz para el uso de la herramienta.
+	\item Permitir al usuario ingresar valores personalizados para campos que lo requieran como los de usuario y contraseña.
+	
+	
+\end{itemize}
+

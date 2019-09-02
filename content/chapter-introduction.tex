@@ -1,0 +1,28 @@
+% !TEX root = ../thesis-example.tex
+%
+\chapter{Introducción}
+\label{sec:intro}
+
+\section{Motivación}
+
+Las aplicaciones móviles se han convertido en una gran parte de nuestras vidas. De acuerdo a Statista \cite{MobileStatista}, el número de aplicaciones disponibles en Google Play Store para el primer cuarto de 2018 fue de 3.8 millones. En 2017 fueron descargadas 178.1 billones de aplicaciones en el mundo. A medida que crece este mercado, también lo hace la necesidad de mejorar cada etapa del proceso de desarrollo para entregar un producto de calidad de manera eficiente. Una de estas es la etapa de pruebas. Mediante esta los desarrolladores pueden asegurar la calidad del software y por consiguiente la satisfacción del cliente.
+
+En el desarrollo de aplicaciones móviles, es especialmente crítico asegurar que el producto está libre de errores. Hay una gran variedad de alternativas presentadas a los usuarios, y esta facilidad de adquisición hace para ellos más fácil tomar la decisión de cambiar entre ellas. Es por esto que un error en la aplicación puede traducirse en una gran pérdida de clientes.
+
+Las pruebas en aplicaciones móviles se enfrentan a una variedad de retos, uno de estos es la des-fragmentación de plataformas móviles. Esto se refiere al hecho de que hay un gran número de combinaciones de dispositivos con sus sistemas operativos. Por lo tanto, la tarea de realizar pruebas en una aplicación móvil se hace aún más complicada. No solo tiene el tester que asegurar el correcto funcionamiento de la aplicación en un SO (Android, iOS), sino que también se deben tener en cuenta las diferentes modificaciones que son realizadas por cada OEM (Manufacturador original del equipo). Dado que este problema tiene mayor impacto para el caso de Android, el proyecto se basará en dicho sistema operativo.
+Por otro lado, las aplicaciones móviles, en comparación con las de escritorio, están sujetas a muchas más variables que pueden influenciar su correcto funcionamiento. Los recursos disponibles en un dispositivo móvil son mucho más limitados que los que se encuentran en un computador. Además, se deben tener en cuenta sensores, batería, otras aplicaciones corriendo en el dispositivo, etc.
+
+Por consiguiente, al tener una gran variedad de retos en este campo, proponemos abordar el problema mediante el uso de multi-modelos para generar estas pruebas. Basados en la extracción de modelos propuesta en Automated Extraction of Augmented Models for Android Apps (RIP tool) \cite{LinanAutomatedApps} y CEL \cite{Linares-Vasquez2017ContinuousTesting}, proponemos una herramienta para generar tests de manera automática que tiene en cuenta los tres modelos (contexto, dominio y GUI). Al tener en consideración la información proporcionada por estos modelos, se generarán tests más fieles a la realidad, asegurando mayor cobertura en casos de prueba.
+
+\section{Objetivos}
+
+\begin{itemize}
+	\item Generar casos de prueba de 'esquina' basados en las probables causas de error encontradas con los modelos.
+	\item Generar casos de pruebas basados en los cambios contextuales de la aplicación (conectividad, batería, etc).
+	\item Proveer al usuario con una visualización de la ejecución de las pruebas a través de una aplicación web.
+\end{itemize}
+
+\section{Resultados esperados}
+Al finalizar el proyecto, será posible para el tester generar varios casos de prueba de manera automatizada, considerando los posibles factores que pueden influenciar la aplicación móvil. Esto reducirá el costo de tener que probar la aplicación de manera manual o programando los casos de prueba.
+\section{Resultados alcanzados}
+Se construyó una herramienta que permite al desarrollador generar casos de prueba que se pueden reproducir con el framework Espresso. Estos casos tienen en cuenta el modelo GUI extraído por RIP junto con el modelo de dominio y los cambios contextuales producidos en la aplicación. Se decidió usar Espresso debido a que es la herramienta oficial propuesta por Google, además de estar ampliamente documentado para su fácil modificación por parte del desarrollador/usuario.
