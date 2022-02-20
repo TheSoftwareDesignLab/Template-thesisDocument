@@ -1,0 +1,352 @@
+\documentclass[conference]{IEEEtran}
+\IEEEoverridecommandlockouts
+% The preceding line is only needed to identify funding in the first footnote. If that is unneeded, please comment it out.
+\usepackage{cite}
+\usepackage{amsmath,amssymb,amsfonts}
+\usepackage{algorithmic}
+\usepackage{graphicx}
+\usepackage{textcomp}
+\usepackage{xcolor}
+\usepackage{pgfgantt}
+\usepackage{acronym}
+
+\usepackage{multirow}
+
+\usepackage{xspace}
+
+\makeatletter
+\newcommand{\linebreakand}{%
+  \end{@IEEEauthorhalign}
+  \hfill\mbox{}\par
+  \mbox{}\hfill\begin{@IEEEauthorhalign}
+}
+\makeatother
+
+\definecolor{barblue}{RGB}{153,204,254}
+\definecolor{groupblue}{RGB}{51,102,254}
+\definecolor{linkred}{RGB}{165,0,33}
+\renewcommand\sfdefault{phv}
+\renewcommand\mddefault{mc}
+\renewcommand\bfdefault{bc}
+\setganttlinklabel{s-s}{START-TO-START}
+\setganttlinklabel{f-s}{FINISH-TO-START}
+\setganttlinklabel{f-f}{FINISH-TO-FINISH}
+
+\def\BibTeX{{\rm B\kern-.05em{\sc i\kern-.025em b}\kern-.08em
+    T\kern-.1667em\lower.7ex\hbox{E}\kern-.125emX}}
+    
+
+\definecolor{author}{rgb}{.5, .5, .5}
+\definecolor{note}{rgb}{.54, .17, .89}
+\definecolor{idea}{rgb}{.1, .7, .0}
+\definecolor{missing}{rgb}{1, .03, .0}
+\definecolor{deleteme}{rgb}{.9, .3, .5}
+\definecolor{comment}{rgb}{0.19, 0.55, 0.91}
+
+\newcommand{\ANA}[2][comment]{\authorcomment[#1]{AMH}{#2}}
+
+\newcommand{\authorcomment}[3][comment]
+  {\noindent
+      \fbox{\footnotesize\textcolor{author}{\textsc{#2}}}
+      \textcolor{#1}{\textsl{#3}}{}}
+
+
+\begin{document}
+\newcommand{\eg}{\emph{e.g.,}\xspace}
+\newcommand{\ie}{\emph{i.e.,}\xspace}
+\newcommand{\etal}{\emph{et al.}\xspace}
+\newcommand{\aka}{\emph{a.k.a.,}\xspace}
+\newcommand{\cf}{\emph{cf.}\xspace}
+\newcommand{\mref}{\textcolor{red}{[REF]}\xspace}
+\newcommand{\secref}[1]{Section~\ref{#1}\xspace}
+\newcommand{\figref}[1]{Fig.~\ref{#1}\xspace}
+\newcommand{\listref}[1]{Listing~\ref{#1}\xspace}
+\newcommand{\tabref}[1]{Table~\ref{#1}\xspace}
+
+\input{acronyms}
+
+\title{Machine Learning Best Practices Discussed on Stack Exchange}
+
+ \author{\IEEEauthorblockN{German David Martínez Solano}
+\IEEEauthorblockA{\textit{Systems and Computing Engineering Department} \\
+\textit{Universidad de los Andes}\\
+Bogotá, Colombia \\
+gd.martinez@uniandes.edu.co}
+\and
+\IEEEauthorblockN{Mónica Andrea Bayona Latorre}
+\IEEEauthorblockA{\textit{Systems and Computing Engineering Department} \\
+\textit{Universidad de los Andes}\\
+Bogotá, Colombia \\
+ma.bayona@uniandes.edu.co}
+\linebreakand 
+\IEEEauthorblockN{Mario Linares Vásquez}
+\IEEEauthorblockA{\textit{Systems and Computing Engineering Department} \\
+\textit{Universidad de los Andes}\\
+Bogotá, Colombia \\
+Adviser \\
+m.linaresv@uniandes.edu.co}
+\and
+\IEEEauthorblockN{Anamaria Irmgard Mojica Hanke}
+\IEEEauthorblockA{\textit{Systems and Computing Engineering Department} \\
+\textit{Universidad de los       Andes}\\
+Bogotá, Colombia \\
+Co-advisor \\
+ai.mojica10@uniandes.edu.co}
+}
+
+\maketitle
+
+\begin{abstract}
+Throughout this paper, we seek to carry out an analysis about which best/good practices of \ac{ML} are discussed in \acp{CQ+A} websites, and establish if these practices are being used in \ac{SE}. To achieve this we will follow a series of steps to extract information from different \acp{CQ+A} communities from \ac{STE} website, download the users dumps from the selected pages, preprocess it  and obtain the relevant information. In addition, we will analyze and collect information about posts that were already tagged, with possible best practices, and a plausible taxonomy of \ac{ML} best practice. This analyzed will be executed by (i) analyzing which of the best practices in the taxonomy are being used in \ac{SE} conference studies; (ii) surveying  the \ac{SE} articles authors, in order to understand which good practice have they followed. Subsequently, for the opposite phase, best/good software practices that are used in \ac{ML}, the goal is review related work and its state of the art.
+
+
+%tag the posts manually with possible best practices and their stage in a \ac{ML} pipeline, build a taxonomy based on the best practices previously found and  relevant conference articles of \ac{SE}, validate with experts in the area and finally determine which good practices were used in conference articles of \ac{ML}. Subsequently, for the opposite phase, best/good software practices that are used in \ac{ML}, the goal is review related work and its state of the art.
+
+\end{abstract}
+
+\begin{IEEEkeywords}
+machine learning, software engineering
+\end{IEEEkeywords}
+
+\section{Introduction}
+
+Currently, there are numerous \acfi{CQ+A} websites which allow the exchange of knowledge on different topics of interest, in our case, we identify a massive exchange of software knowledge and, with the rise of \acfi{ML}, many doubts, errors and discussions in these forums have arisen. However, the topic of best/good \ac{ML} practices has not been explored in depth in these communities and therefore, it is unknown if the recommendations or solutions given in these forums follow good practices.
+
+This paper is made in order to know the \ac{ML} good practices in the \acfi{SE} community, to know if the community is applying them and if \acfi{STE} is making good recommendations in this field. With this study, it is expected that anyone will have at their disposal what are those recommended good practices that should be applied when conducting a study with \ac{ML}, both for experts and non-experts on the subject.
+
+\section{Related work and state-of-the-art}
+
+\ac{STE} is one of the most used \ac{CQ+A} websites, within its communities is \ac{STO}, the largest and the one most trusted by developers to share and learn \cite{stackexchange_2021}. Due to all the knowledge that is exchanged in the forums, these have been a research focus on the \ac{SE} field. However, from the prior work we analyzed, it is worth noting that none were related to good \ac{ML} practices in \acp{CQ+A}. The main topics consisted of trends, impact of \ac{STO}  in a specific field  \cite{Meldrum_17, Treude_2011, barua_what_2014, Bangash_2019} in the \acp{CQ+A},  difficulties or challenges presented on specific topics \cite{Alshangiti_2019, Kochhar_2016, Islam_2019},  expertise of the users  in \ac{STO} \cite{Alshangiti_2019, Yang_2014, Vadlamani_2020}  or discussion  about libraries, APIs or frameworks \cite{Islam_2019, Ahasanuzzaman_2020, Han_2020, Hashemi_2020}. Given the nature of our research, we will aim previous studies focused on \ac{ML}.
+
+Alshangiti \etal  \cite{Alshangiti_2019}  analyzed the \ac{ML} posts and their respective users on \ac{STO}, and they were able to extract interesting insights from the developers challenges in this field. Some of the most outstanding findings were the lack of \ac{ML} experts, which was obtained by comparing the \textit{ExpertiseRank} between \ac{ML} and Web Development in \ac{STO}. Moreover, it was also concluded that questions concerning ML take considerably longer to receive an answer than other typical questions; and to summarize, they found using natural language processing that data and feature preprocessing are the most challenging topics in the \ac{ML} questions.
+
+The study by Islam \etal focused on questions about popular \ac{ML} libraries (\ie \textit{Caffe} \cite{jia2014caffe},  \textit{H2O} \cite{H2OAutoML20},  \textit{Mahout}, \textit{Keras} \cite{Keras},  \textit{MLlib}, \textit{scikit-learn}\cite{scikit-learn}, \textit{Tensorflow}\cite{tensorflow2015},  \textit{Theano} \cite{theano}, \textit{Torch} \cite{torch} and \textit{Weka}\cite{weka}). They posed four research questions, concerning \ac{ML} libraries, along the \ac{ML} pipeline of \cite{ml_pipeline2017} and answered them using 3,283 \ac{STO} questions that were manually tagged. Regarding the \ac{ML} pipeline stages, it was determined that when it comes to libraries that support \ac{ML} clusters, the model creation stage presented greater difficulties, followed by data preparation. They also found that type mismatch problems in the input data were present in most libraries, while shape mismatches (errors related to dimensions in the matrix-tensor layers) were more frequent in deep learning libraries. Another finding was that the model creation problems were consistent throughout the study period, while the data preparation problems decreased and increased again at 4 years. In this way they determined that some issues are related to specific periods.
+
+Finally, Han \etal \cite{Han_2020} focused on discussions of three \ac{DL} frameworks ( \ie  \textit{Tensorflow},  \textit{Theano},  \textit{Pytorch}), on \ac{STO} and GitHub. They downloaded 26,887 STO posts and 36,330 GitHub pull requests and issues, which they used to identify, through \ac{LDA}, categories of the \ac{DL} workflow stages. Among the most outstanding findings, is that in both platforms and the three frameworks, the most discussed stages are Model Training and preliminary preparation, and the most popular topic is Error.
+
+In our research, we use \ac{STO} questions and  also  posts from other \acp{CQA} in the \ac{STE} data dump \cite{dump_STE_2021}.
+
+\section{General and specific objectives}
+
+\subsection{\textbf{General objective}}
+
+Extract and analyze which \ac{ML} best/good practices are discussed in \acp{CQ+A} websites and establish if these practices are being used in \ac{SE}.
+
+\subsection{\textbf{Specific objectives}}
+
+\vspace{0.3cm}
+
+\begin{enumerate}
+	\item Extract from conference articles what \ac{ML} good practices are being applied in \ac{SE}.
+	\vspace{0.3cm}
+	\item Create a taxonomy visualization based on the good practices found.
+	\vspace{0.3cm}
+	\item Analyze \ac{ML} good practices in conference papers.
+	\vspace{0.3cm}
+	\item Extract and analyze information concerning \ac{ML} good practices used by papers' authors. 
+	\vspace{0.3cm}
+	\item Perform validation with experts in the area on good practices of \ac{ML} they have used in \ac{SE}.
+	\vspace{0.3cm}
+	\item Investigate the state of the art of good software practices in \ac{ML}.
+\end{enumerate}
+
+
+\section{Execution plan}
+
+The work methodology to be followed is the Kanban strategy, which consists of the elaboration of a table or diagram in which three columns of tasks are reflected; pending, in process or completed. We added a fourth column with the tasks that are going to be executed in future weeks, but are not relevant at the moment of creation.
+
+A weekly meeting will be held with the co-advisor to plan new tasks and review the progress in the Kanban board, thus allowing greater control and review of tasks in a faster and easier way, also allowing the collaboration of all members in the tasks.
+
+Table \ref{table:activities} shows the phases and their activities that will be completed throughout the semester to achieve all the project objectives.
+
+\begingroup
+\setlength{\tabcolsep}{10pt} % Default value: 6pt
+\renewcommand{\arraystretch}{1.5} % Default value: 1
+\begin{table}[htb]
+\normalsize
+\begin{center}
+\begin{tabular}{|l|p{4.8cm}|}
+\hline
+\multicolumn{1}{|c|}{Phase}                                                           
+& \multicolumn{1}{c|}{Activities}        \\ \hline
+\multicolumn{1}{|c|}{\multirow{3}{*}{Planning}}                                       
+& Define proposal                        \\ \cline{2-2} 
+\multicolumn{1}{|c|}{}                                                                
+& Establish work methodology              \\ \cline{2-2} 
+\multicolumn{1}{|c|}{}                                                                
+& Define the execution plan              \\ \hline
+\multicolumn{1}{|c|}{\multirow{5}{*}{Preparation}}                                    
+& Review all data sources                \\ \cline{2-2} 
+\multicolumn{1}{|c|}{}                                                                
+& Inquire and learn about ML             \\ \cline{2-2} 
+\multicolumn{1}{|c|}{}                                                                
+& Update and create new scripts          \\ \cline{2-2} 
+\multicolumn{1}{|c|}{}                                                                
+& Start taxonomy web development prototype         \\ \cline{2-2} 
+\multicolumn{1}{|c|}{}                                                                
+& Download conference papers             \\ \hline
+\multirow{11}{*}{Implementation} 
+& Prototype to ask papers' authors for BP/GP \\ \cline{2-2} 
+& Filter \ac{ML}     conference papers \\ \cline{2-2} 
+& Extract emails and authors names from filtered papers \\ \cline{2-2} 
+& Update database data \\ \cline{2-2} 
+& Categorize good/best practices found  \\ \cline{2-2}    
+& Prototype to identify BP/GP            \\ \cline{2-2} 
+& Implement web taxonomy with real data  \\ \cline{2-2} 
+& Validate with experts                  \\ \cline{2-2} 
+& Extract information of BP/GP           \\ \cline{2-2} 
+& Finalize TOSEM paper                   \\ \cline{2-2} 
+& State of the art SE + ML               \\ \hline
+\multirow{2}{*}{\begin{tabular}[c]{@{}l@{}}Documentation \\ and closure\end{tabular}} & Create document with results           \\ \cline{2-2} 
+& Create poster                          \\ \hline
+\end{tabular}
+\end{center}
+\caption{Planning of activities}
+\label{table:activities}
+\end{table}
+\endgroup
+
+The following figure corresponds to a Gantt chart whose objective is to expose the time of dedication planned for different tasks or activities throughout the semester.
+
+\begin{ganttchart}[
+    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+    expand chart=(\textwidth / 2.13),
+    hgrid style/.style={draw=linkred, line width=.75pt},
+    vgrid={*1{draw=black!5, line width=.75pt}},
+    title/.style={draw=none, fill=none},
+    title label font=\bfseries\footnotesize,
+    title label node/.append style={below=7pt},
+    include title in canvas=false,
+    bar label font=\mdseries\small\color{black!70},
+    bar label node/.append style={left=0.25cm, align=left},
+    bar/.append style={draw=none, rounded corners=3pt, fill=barblue},
+    bar incomplete/.append style={fill=black!63},
+    bar progress label font=\mdseries\footnotesize\color{black!70},
+    group/.append style={fill=groupblue},
+    group incomplete/.append style={fill=black},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\bfseries\small
+  ]{1}{8}
+  \gantttitle[
+    title label node/.append style={below left=7pt and -5pt}
+  ]{WEEK:\quad1}{1}
+  \gantttitlelist{2,...,8}{1} \\
+  \ganttgroup{Planning}{1}{5} \\
+  \ganttbar{Define proposal}{1}{5} \\
+  \ganttbar{Establish work \\ methodology}{2}{3} \\
+  \ganttbar{Define the \\ execution plan}{2}{4} \\ [grid]
+  \ganttgroup{Preparation}{3}{5} \\
+  \ganttbar{Review all \\ data sources}{3}{4} \\
+  \ganttbar{Inquire and \\ learn about \ac{ML}}{3}{5} \\
+  \ganttbar{Update and \\ create new \\ scripts}{3}{5} \\
+  \ganttbar{Start taxonomy \\ web development \\ prototype}{3}{5} \\
+  \ganttbar{Download \\ conference papers}{4}{5} \\ [grid]
+  \ganttgroup{Implementation}{4}{8} \\
+  \ganttbar{Prototype to \\ ask papers' \\ authors for BP/GP}{4}{6} \\
+  \ganttbar{Filter \ac{ML} \\ conference papers}{5}{6} \\
+  \ganttbar{Extract emails and \\ authors names \\ from filtered papers}{5}{6} \\
+  \ganttbar{Update database \\ data}{5}{6} \\
+  \ganttbar{Categorize \\ good/best \\ practices found}{5}{6} \\
+  \ganttbar{Prototype to \\ identify BP/GP}{5}{6} \\
+  \ganttbar{Implement web \\ taxonomy with \\ real data}{5}{7} \\
+  \ganttbar{Validate with \\ experts}{6}{8} \\ 
+  \ganttbar{Extract \\ information \\ of BP/GP}{7}{8}
+\end{ganttchart}
+
+\begin{ganttchart}[
+    canvas/.append style={fill=none, draw=black!5, line width=.75pt},
+    expand chart=(\textwidth / 2.13),
+    hgrid style/.style={draw=linkred, line width=.75pt},
+    vgrid={*1{draw=black!5, line width=.75pt}},
+    newline shortcut=true,
+    title/.style={draw=none, fill=none},
+    title label font=\bfseries\footnotesize,
+    title label node/.append style={below=7pt},
+    include title in canvas=false,
+    bar label font=\mdseries\small\color{black!70},
+    bar label node/.append style={left=0.25cm, align=left},
+    bar/.append style={draw=none, rounded corners=3pt, fill=barblue},
+    bar incomplete/.append style={fill=black!63},
+    bar progress label font=\mdseries\footnotesize\color{black!70},
+    group/.append style={fill=groupblue},
+    group incomplete/.append style={fill=black},
+    group left shift=0,
+    group right shift=0,
+    group height=.5,
+    group peaks tip position=0,
+    group label node/.append style={left=.6cm},
+    group progress label font=\bfseries\small
+  ]{1}{8}
+  \gantttitle[
+    title label node/.append style={below left=7pt and -5pt}
+  ]{WEEK:\quad9}{1}
+  \gantttitlelist{10,...,16}{1} \\
+  \ganttgroup{Implementation}{1}{6} \\
+  \ganttbar{Validate with \\ experts}{1}{1} \\ 
+  \ganttbar{Extract information \\ of BP/GP}{1}{2} \\ 
+  \ganttbar{Finalize TOSEM \\ paper}{1}{3} \\
+  \ganttbar{State of the \\ art SE + ML}{3}{6} \\ [grid]
+  \ganttgroup{Documentation}{5}{8} \\
+  \ganttbar{Create document \\ with results}{5}{8} \\
+  \ganttbar{Create poster}{5}{8}
+  
+\end{ganttchart}
+
+
+\section{Expected results}
+At the end of the project, the taxonomy of good ML practices used in software engineering is expected to be validated with  experts  in  the  area  and  we  could  determine  if  these practices are being followed by people in the field. Also, we would know which good practices are being applied in ML conference papers and which other practices are being used by these paper's authors. In addition, it is expected to know the state of the art and documentation regarding  good  software  practices  that  are  applied  in  \ac{ML}.
+
+\begin{thebibliography}{00}
+\bibitem{stackexchange_2021} StackExchange. 2021. Stack exchange About. https://stackexchange.com/about
+
+\bibitem{Bangash_2019} A. A. Bangash, H. Sahar, S. Chowdhury, A. W. Wong, A. Hindle, and K. Ali. 2019.What do Developers Know About Machine Learning: A Study of ML Discussionson StackOverflow. In2019 IEEE/ACM 16th International Conference on MiningSoftware Repositories (MSR). 260–264.  https://doi.org/10.1109/MSR.2019.00052
+
+\bibitem{barua_what_2014} Anton Barua, Stephen W. Thomas, and Ahmed E. Hassan. 2014. What aredevelopers talking about? An analysis of topics and trends in Stack Overflow.Empirical Software Engineering19, 3 (June 2014), 619–654.   https://doi.org/10.1007/s10664-012-9231-y
+
+\bibitem{Meldrum_17} Sarah Meldrum, Sherlock A. Licorish, and Bastin Tony Roy Savarimuthu. 2017. Crowdsourced Knowledge on Stack Overflow: A Systematic Mapping Study. InProceedings of the 21st International Conference on Evaluation and Assessment inSoftware Engineering(Karlskrona, Sweden)(EASE’17). Association for Comput-ing Machinery, New York, NY, USA, 180–185. https://doi.org/10.1145/3084226.3084267
+
+\bibitem{Treude_2011} Christoph Treude, Ohad Barzilay, and Margaret-Anne Storey. 2011. How Do Pro-grammers Ask and Answer Questions on the Web? (NIER Track). InProceedingsof the 33rd International Conference on Software Engineering(Waikiki, Honolulu,HI, USA)(ICSE ’11). Association for Computing Machinery, New York, NY, USA,804–807.   https://doi.org/10.1145/1985793.1985907
+
+\bibitem{Alshangiti_2019} M. Alshangiti, H. Sapkota, P. K. Murukannaiah, X. Liu, and Q. Yu. 2019.  Whyis Developing Machine Learning Applications Challenging? A Study on StackOverflow Posts. In2019 ACM/IEEE International Symposium on Empirical SoftwareEngineering and Measurement (ESEM). 1–11.  https://doi.org/10.1109/ESEM.2019.8870187
+
+\bibitem{Islam_2019} M. J. Islam, H. Nguyen, Rangeet Pan, and H. Rajan. 2019. What Do DevelopersAsk About ML Libraries? A Large-scale Study Using Stack Overflow.ArXivabs/1906.11940 (2019)
+
+\bibitem{Kochhar_2016} Pavneet Singh Kochhar. 2016. Mining Testing Questions on Stack Overflow. InProceedings of the 5th International Workshop on Software Mining(Singapore,Singapore)(SoftwareMining 2016). Association for Computing Machinery, NewYork, NY, USA, 32–38.   https://doi.org/10.1145/2975961.2975966
+
+\bibitem{Vadlamani_2020} S. L. Vadlamani and O. Baysal. 2020. Studying Software Developer Expertiseand Contributions in Stack Overflow and GitHub. In2020 IEEE InternationalConference on Software Maintenance and Evolution (ICSME). 312–323.    https://doi.org/10.1109/ICSME46990.2020.00038
+
+\bibitem{Yang_2014} B. Yang and S. Manandhar. 2014. Exploring user expertise and descriptive abilityin community question answering. In2014 IEEE/ACM International Conferenceon Advances in Social Networks Analysis and Mining (ASONAM 2014). 320–327.https://doi.org/10.1109/ASONAM.2014.6921604
+
+\bibitem{Han_2020} Junxiao Han, Emad Shihab, Zhiyuan Wan, Shuiguang Deng, and Xin Xia. 2020.What do Programmers Discuss about Deep Learning Frameworks.EmpiricalSoftware Engineering25, 4 (Jul 2020), 2694–2747. https://doi.org/10.1007/s10664-020-09819-6
+
+\bibitem{Hashemi_2020} Y. Hashemi, M. Nayebi, and G. Antoniol. 2020. Documentation of MachineLearning Software. In2020 IEEE 27th International Conference on Software Anal-ysis, Evolution and Reengineering (SANER). 666–667.   https://doi.org/10.1109/SANER48275.2020.9054844
+
+\bibitem{Ahasanuzzaman_2020} Md Ahasanuzzaman, Muhammad Asaduzzaman, Chanchal K. Roy, and Kevin A.Schneider. 2020. CAPS: a supervised technique for classifying Stack Overflowposts concerning API issues.Empirical Software Engineering25, 2 (Mar 2020),1493–1532.   https://doi.org/10.1007/s10664-019-09743-4
+
+\bibitem{jia2014caffe} Yangqing Jia, Evan Shelhamer, Jeff Donahue, Sergey Karayev, Jonathan Long,et al.2014. Caffe: Convolutional Architecture for Fast Feature Embedding.arXivpreprint arXiv:1408.5093(2014)
+
+\bibitem{H2OAutoML20} Erin LeDell and Sebastien Poirier. 2020. H2O AutoML: Scalable AutomaticMachine Learning.7th ICML Workshop on Automated Machine Learning (AutoML)(July 2020).    https://www.automl.org/wp-content/uploads/2020/07/AutoML\_2020\_paper\_61.pdf
+
+\bibitem{Keras} François Chollet and others. 2015. Keras. https://keras.io.
+
+\bibitem{scikit-learn} F. Pedregosa, G. Varoquaux, A. Gramfort, V. Michel, B. Thirion, et al.2011. Scikit-learn: Machine Learning in Python.Journal of Machine Learning Research(2011)
+
+\bibitem{tensorflow2015} Martín Abadi, Ashish Agarwal, Paul Barham, Eugene Brevdo, Zhifeng Chen, et al.2015.  TensorFlow: Large-Scale Machine Learning on Heterogeneous Systems.https://www.tensorflow.org/ Software available from tensorflow.org.
+
+\bibitem{theano} Rami  Al-Rfou,  Guillaume  Alain,  Amjad  Almahairi,  Christof  Angermueller,Dzmitry Bahdanau, et al.2016. Theano: A Python framework for fast com-putation of mathematical expressions.arXiv e-printsabs/1605.02688 (May 2016).http://arxiv.org/abs/1605.02688
+
+\bibitem{torch} Adam Paszke, Sam Gross, Francisco Massa, Adam Lerer, James Bradbury, et al.2019. PyTorch: An Imperative Style, High-Performance Deep Learning Library. InAdvances in Neural Information Processing Systems 32, H. Wallach, H. Larochelle,A. Beygelzimer, F. d'Alché-Buc, E. Fox, and R. Garnett (Eds.). Curran Associates,Inc., 8024–8035.   http://papers.neurips.cc/paper/9015-pytorch-an-imperative-style-high-performance-deep-learning-library.pdf
+
+\bibitem{weka} Mark Hall, Eibe Frank, Geoffrey Holmes, Bernhard Pfahringer, Peter Reutemann,and Ian H. Witten. 2009. The WEKA data mining software: an update.SIGKDDExplorations11, 1 (2009), 10–18
+
+\bibitem{ml_pipeline2017} Yufeng Guo. 2017. The 7 Steps of Machine Learning.   https://towardsdatascience.com/the-7-steps-of-machine-learning-2877d7e5548e
+
+\bibitem{dump_STE_2021} Stack Exchange Community. 2021. Stack Exchange Data Dump: Stack Exchange,Inc.: Free Download, Borrow, and Streaming.https://archive.org/details/stackexchange
+
+\end{thebibliography}
+
+\end{document}
